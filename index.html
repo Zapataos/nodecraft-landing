@@ -6,9 +6,8 @@
     <title>NodeCraft - Próximamente</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
     <style>
-        /* --- Estilos base (sin cambios) --- */
         body {
             background-color: #0a0a1a;
             color: #E0E0E0;
@@ -19,106 +18,77 @@
             min-height: 100vh;
             margin: 0;
             text-align: center;
-            /* Importante para que no se vea el texto antes de la animación */
-            overflow: hidden; 
+            overflow: hidden;
         }
+
         .container {
             padding: 2rem;
         }
+
         img {
             max-width: 200px;
             height: auto;
-            margin-bottom: 2rem;
-        }
-        h1 {
-            font-family: 'Exo 2', sans-serif;
-            font-size: 3rem;
-            color: #FFFFFF;
-            text-shadow: 0 0 15px rgba(160, 32, 240, 0.5);
+            margin-bottom: 3rem;
         }
 
-        /* --- NUEVA SECCIÓN DE ANIMACIÓN --- */
+        /* Animación para navegadores WebKit */
+        @-webkit-keyframes text-flow {
+            0% {
+                opacity: 0;
+                -webkit-transform: translateX(-150px);
+            }
+            7.7% {
+                opacity: 1;
+                -webkit-transform: translateX(0);
+            }
+            53.8% {
+                opacity: 1;
+                -webkit-transform: translateX(0);
+            }
+            61.5% {
+                opacity: 0;
+                -webkit-transform: translateX(150px);
+            }
+            100% {
+                opacity: 0;
+                -webkit-transform: translateX(150px);
+            }
+        }
 
-        /* 1. Definimos la animación de "entrada" con el barrido */
-        @keyframes sweep-in {
-            /* La animación empieza con el texto fuera de la pantalla a la izquierda y transparente */
+        /* Animación estándar */
+        @keyframes text-flow {
             0% {
                 opacity: 0;
                 transform: translateX(-150px);
             }
-            /* A la mitad, está en su posición final pero con un ligero desenfoque */
-            50% {
-                opacity: 1;
-                filter: blur(2px);
-            }
-            /* Al final, está en su posición, nítido y visible */
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-                filter: blur(0);
-            }
-        }
-
-        /* 2. Definimos la animación de "salida" */
-        @keyframes sweep-out {
-            /* Empieza en su posición normal y visible */
-            0% {
+            7.7% {
                 opacity: 1;
                 transform: translateX(0);
             }
-            /* Termina fuera de la pantalla a la derecha y transparente */
+            53.8% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            61.5% {
+                opacity: 0;
+                transform: translateX(150px);
+            }
             100% {
                 opacity: 0;
                 transform: translateX(150px);
             }
         }
-        
-        /* 3. Contenedor para el texto que se animará */
-        .animated-text-container {
-            /* Definimos el tiempo total del ciclo de animación: */
-            /* 1s (entrada) + 6s (pausa) + 1s (salida) + 5s (pausa) = 13 segundos */
-            animation: text-loop 13s infinite;
-        }
 
-        /* 4. Aplicamos la animación al párrafo específico */
         #animated-subtitle {
-            /* Por defecto, el texto está invisible */
-            opacity: 0;
+            -webkit-animation: text-flow 13s infinite;
+            animation: text-flow 13s infinite;
         }
-
-        /* 5. Creamos un ciclo que combina las animaciones y las pausas */
-        @keyframes text-loop {
-            /* Del 0% al 7.7% del tiempo total (1s de 13s), se ejecuta la animación de entrada */
-            0%, 7.7% {
-                animation: sweep-in 1s forwards;
-            }
-            /* Entre el 7.7% y el 53.8% (los 6s de espera), el texto permanece visible */
-            7.8%, 53.8% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-            /* Del 53.9% al 61.5% (1s de 13s), se ejecuta la animación de salida */
-            53.9%, 61.5% {
-                animation: sweep-out 1s forwards;
-            }
-            /* El resto del tiempo (los 5s de espera), permanece invisible */
-            61.6%, 100% {
-                opacity: 0;
-            }
-        }
-
     </style>
 </head>
 <body>
-
     <div class="container">
         <img src="logo.png" alt="Logo de NodeCraft">
-        <h1>NodeCraft</h1>
-        
-        <div class="animated-text-container">
-            <p id="animated-subtitle">Nuestro nuevo sitio web estará disponible próximamente.</p>
-        </div>
+        <p id="animated-subtitle">Nuestro nuevo sitio web estará disponible próximamente.</p>
     </div>
-
 </body>
 </html>
