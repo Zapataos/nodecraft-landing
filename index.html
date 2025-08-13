@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
     <style>
+        /* --- Estilos base --- */
         body {
             background-color: #0a0a1a;
             color: #E0E0E0;
@@ -20,87 +21,59 @@
             text-align: center;
             overflow: hidden;
         }
-
         .container {
             padding: 2rem;
         }
-
         img {
-            /* Hacemos el logo mucho más grande */
-            width: 400px; /* Aumentamos a 400px */
+            width: 400px;
             height: auto;
             margin-bottom: 3rem;
-            /* Añadimos efectos para que se vea mejor */
             filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
-            /* Opcional: añadimos una animación sutil al logo */
-            animation: logo-pulse 2s infinite alternate;
         }
 
-        /* Animación sutil para el logo */
-        @keyframes logo-pulse {
-            from {
-                transform: scale(1);
-                filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
-            }
-            to {
-                transform: scale(1.05);
-                filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
-            }
+        /* --- NUEVA ANIMACIÓN DE PARTÍCULAS --- */
+        #animated-subtitle {
+            font-size: 1.4rem;
+            position: relative;
+            display: inline-block;
         }
 
-        /* Animación para navegadores WebKit */
-        @-webkit-keyframes text-flow {
+        .particle {
+            position: absolute;
+            display: inline-block;
+            opacity: 0;
+            animation: particle-disintegrate 1.5s ease-out forwards;
+        }
+
+        @keyframes particle-disintegrate {
             0% {
-                opacity: 0;
-                -webkit-transform: translateX(-150px);
-            }
-            7.7% {
                 opacity: 1;
-                -webkit-transform: translateX(0);
-            }
-            53.8% {
-                opacity: 1;
-                -webkit-transform: translateX(0);
-            }
-            61.5% {
-                opacity: 0;
-                -webkit-transform: translateX(150px);
+                transform: translate(0, 0) rotate(0deg);
             }
             100% {
                 opacity: 0;
-                -webkit-transform: translateX(150px);
+                transform: translate(var(--tx), var(--ty)) rotate(var(--rot));
             }
         }
 
-        /* Animación estándar */
-        @keyframes text-flow {
+        /* --- ANIMACIÓN PRINCIPAL DEL TEXTO --- */
+        @keyframes text-particle-animation {
             0% {
                 opacity: 0;
-                transform: translateX(-150px);
             }
-            7.7% {
+            10% {
                 opacity: 1;
-                transform: translateX(0);
             }
-            53.8% {
+            90% {
                 opacity: 1;
-                transform: translateX(0);
-            }
-            61.5% {
-                opacity: 0;
-                transform: translateX(150px);
             }
             100% {
                 opacity: 0;
-                transform: translateX(150px);
             }
         }
 
         #animated-subtitle {
-            -webkit-animation: text-flow 13s infinite;
-            animation: text-flow 13s infinite;
-            font-size: 1.4rem; /* Texto más grande */
-            margin-top: 1rem; /* Espacio superior adicional */
+            animation: text-particle-animation 13s infinite;
         }
     </style>
 </head>
@@ -109,5 +82,53 @@
         <img src="logo.png" alt="Logo de NodeCraft">
         <p id="animated-subtitle">Nuestro nuevo sitio web estará disponible próximamente.</p>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const subtitle = document.getElementById('animated-subtitle');
+            const originalText = subtitle.textContent;
+            
+            // Función para crear la animación de partículas
+            function createParticleAnimation() {
+                const text = subtitle.textContent;
+                subtitle.innerHTML = '';
+                
+                // Crear un span para cada letra
+                for (let i = 0; i < text.length; i++) {
+                    const char = text[i];
+                    const span = document.createElement('span');
+                    span.textContent = char;
+                    span.style.display = 'inline-block';
+                    subtitle.appendChild(span);
+                    
+                    // Generar valores aleatorios para la animación
+                    const tx = (Math.random() - 0.5) * 200; // -100px a 100px
+                    const ty = (Math.random() - 0.5) * 100 - 50; // -100px a 0px
+                    const rot = (Math.random() - 0.5) * 720; // -360deg a 360deg
+                    
+                    // Aplicar variables CSS para la animación
+                    span.style.setProperty('--tx', tx + 'px');
+                    span.style.setProperty('--ty', ty + 'px');
+                    span.style.setProperty('--rot', rot + 'deg');
+                    
+                    // Añadir clase de partícula con retraso
+                    setTimeout(() => {
+                        span.classList.add('particle');
+                    }, 11000); // Comienza a desintegrarse después de 11 segundos
+                }
+                
+                // Restaurar el texto original para el próximo ciclo
+                setTimeout(() => {
+                    subtitle.innerHTML = originalText;
+                }, 13000); // Después de 13 segundos (duración total de la animación)
+            }
+            
+            // Ejecutar la animación de partículas cada 13 segundos
+            setInterval(createParticleAnimation, 13000);
+            
+            // Ejecutar la primera vez
+            setTimeout(createParticleAnimation, 11000);
+        });
+    </script>
 </body>
 </html>
