@@ -26,12 +26,26 @@
         }
 
         img {
-            /* Aumentamos el tamaño del logo */
-            width: 300px; /* Ancho fijo más grande */
+            /* Hacemos el logo mucho más grande */
+            width: 400px; /* Aumentamos a 400px */
             height: auto;
             margin-bottom: 3rem;
-            /* Opcional: puedes añadir una sombra o borde para que resalte más */
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+            /* Añadimos efectos para que se vea mejor */
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+            /* Opcional: añadimos una animación sutil al logo */
+            animation: logo-pulse 2s infinite alternate;
+        }
+
+        /* Animación sutil para el logo */
+        @keyframes logo-pulse {
+            from {
+                transform: scale(1);
+                filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+            }
+            to {
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+            }
         }
 
         /* Animación para navegadores WebKit */
@@ -85,7 +99,8 @@
         #animated-subtitle {
             -webkit-animation: text-flow 13s infinite;
             animation: text-flow 13s infinite;
-            font-size: 1.2rem; /* Hacemos el texto un poco más grande */
+            font-size: 1.4rem; /* Texto más grande */
+            margin-top: 1rem; /* Espacio superior adicional */
         }
     </style>
 </head>
