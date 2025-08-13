@@ -1,61 +1,44 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NodeCraft - Próximamente</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
-    <style>
-        /* --- Explicación de los estilos --- */
-        /* 'body' abarca toda la página */
-        body {
-            /* Un color de fondo oscuro, similar al de tu web original */
-            background-color: #0a0a1a;
-            /* El color del texto por defecto */
-            color: #E0E0E0;
-            /* La fuente que ya usabas */
-            font-family: 'Roboto', sans-serif;
-            /* Estas 3 líneas centran todo el contenido vertical y horizontalmente */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* Hacen que el body ocupe el 100% de la altura de la pantalla */
-            min-height: 100vh;
-            /* Quitamos el margen por defecto del navegador */
-            margin: 0;
-            text-align: center;
-        }
-        /* Estilos para el contenedor principal */
-        .container {
-            padding: 2rem;
-        }
-        /* Estilos para la imagen/logo */
-        img {
-            /* Ancho máximo de la imagen para que no sea demasiado grande */
-            max-width: 200px;
-            /* Asegura que la imagen se ajuste si la pantalla es más pequeña */
-            height: auto;
-            margin-bottom: 2rem; /* Espacio debajo de la imagen */
-        }
-        /* Estilos para el título principal */
-        h1 {
-            font-family: 'Exo 2', sans-serif;
-            font-size: 3rem; /* Tamaño de la fuente */
-            color: #FFFFFF;
-            /* Un sutil efecto de sombra de texto que combina con el morado */
-            text-shadow: 0 0 15px rgba(160, 32, 240, 0.5);
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <img src="logo.png" alt="Logo de NodeCraft">
-        <h1>NodeCraft</h1>
-        <p>Nuestro nuevo sitio web estará disponible próximamente.</p>
-    </div>
-
-</body>
-</html>
+ <html lang="es">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>NodeCraft - Próximamente</title>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+     <style>
+         body {
+             background-color: #0a0a1a;
+             color: #E0E0E0;
+             font-family: 'Roboto', sans-serif;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             min-height: 100vh;
+             margin: 0;
+             text-align: center;
+         }
+         .container {
+             padding: 2rem;
+         }
+         img {
+             max-width: 300px; /* Aumenté el tamaño máximo del logo */
+             height: auto;
+             margin-bottom: 1rem; /* Reduje un poco el espacio inferior */
+         }
+         h1 {
+             display: none; /* Oculta el título "NodeCraft" duplicado */
+         }
+     </style>
+ </head>
+ <body>
+ 
+     <div class="container">
+         <img src="logo.png" alt="Logo de NodeCraft">
+         <h1>NodeCraft</h1>
+         <p>Nuestro nuevo sitio web estará disponible próximamente.</p>
+     </div>
+ 
+ </body>
+ </html>
